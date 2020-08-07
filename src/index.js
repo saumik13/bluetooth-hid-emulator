@@ -6,12 +6,14 @@ const { services, uuids } = buildServices()
 let servicesStarted = false
 let isAdvertising = false
 let lastStateChange = null
+console.log("bleno - HID");
 
 bleno.on('stateChange', (state) => {
   if (lastStateChange !== state) {
     console.log('State Change:', blue(state))
     lastStateChange = state
   }
+  console.log(state);
 
   if (state === 'poweredOn' && !isAdvertising) {
     bleno.startAdvertising('Bluetooth HID', uuids)
